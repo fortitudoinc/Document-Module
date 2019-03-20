@@ -139,7 +139,7 @@ jq(function() {
                 console.log("Upload finish");
                 var jsonResponse = this.responseText;
                 var fullFilename = JSON.parse(jsonResponse).fullFilename;
-                var newRow = "<a target=_blank href=${ui.format(url)}preview.page?file=" + fullFilename + " }>" + fullFilename + "</a>";
+                var newRow = "<a target=_blank href=preview.page?file=" + fullFilename + " }>" + fullFilename + "</a>";
                 tbl.fnAddData( [newRow]);
                 tbl.fnDraw();
                 document.getElementById("file-input").value = "";

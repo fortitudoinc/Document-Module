@@ -48,7 +48,7 @@ jq(function() {
 <% if (files) { %>
      <% files.each { %>
       <tr>
-        <td><a target="_blank" href="${ui.format(url)}preview.page?file=${ ui.format(it) }">${ ui.format(it) }</a></td>
+        <td><a target="_blank" href="preview.page?file=${ ui.format(it) }">${ ui.format(it) }</a></td>
       </tr>
 
     <% } %>
