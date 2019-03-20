@@ -1,0 +1,43 @@
+[
+    {
+        "id": "${project.parent.artifactId}.documentapp",
+        "description": "Text description of my app, not shown to regular user",
+        "extensionPoints": [
+            {
+                "id": "subApp.apps",
+                "description": "Apps on the basic Apps App Home Page"
+            }
+        ],
+        "extensions": [
+            {
+                "id": "${project.parent.artifactId}.documentupload",
+                "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+                "type": "link",
+                "label": "Upload Files",
+                "url": "document/document.page",
+                "icon": "icon-signin",
+                "requiredPrivilege": "App: Document Privilege"
+            },
+            {
+                "id": "${project.parent.artifactId}.documentpreview",
+                "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+                "type": "link",
+                "label": "View All Patients Files",
+                "url": "document/viewAllFiles.page",
+                "icon": "icon-signin",
+                "requiredPrivilege": "App: Document Privilege"
+            },
+            {
+                "id": "${project.parent.artifactId}.documentpreview1",
+                "extensionPointId": "patientDashboard.overallActions",
+                "type": "link",
+                "label": "View/Upload Patient Documents",
+                "url": "document/viewUploadFiles.page?patientId={{patient.patientId}}",
+                "icon": "icon-search",
+                "order": 14,
+                "requiredPrivilege": "App: Document Privilege"
+            }
+
+        ]
+    }
+]
