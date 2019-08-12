@@ -22,4 +22,35 @@
   		    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
   		    http://www.springframework.org/schema/util
   		    http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+    
+         	<bean parent="serviceContext">
+		<property name="moduleService">
+			<list>
+				<value>org.openmrs.module.document.api.DocumentService</value>
+				<bean
+					class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+					<property name="transactionManager">
+						<ref bean="transactionManager" />
+					</property>
+					<property name="target">
+						<bean class="org.openmrs.module.document.api.impl.DocumentServiceImpl">
+							<property name="dao">
+								<bean class="org.openmrs.module.document.api.db.hibernate.HibernateDocumentDAO">
+									<property name="sessionFactory">
+										<ref bean="dbSessionFactory" />
+									</property>
+								</bean>
+							</property>
+						</bean>
+					</property>
+					<property name="preInterceptors">
+						<ref bean="serviceInterceptors" />
+					</property>
+					<property name="transactionAttributeSource">
+						<ref bean="transactionAttributeSource" />
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
 </beans>

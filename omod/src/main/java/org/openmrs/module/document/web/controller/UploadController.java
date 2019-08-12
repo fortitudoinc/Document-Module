@@ -28,6 +28,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 import org.openmrs.Patient;
+import org.openmrs.api.context.Context;
+import org.openmrs.module.document.Document;
+import org.openmrs.module.document.api.DocumentService;
 
 /**
  * This class configured as controller using annotation and mapped with the URL of
@@ -52,18 +55,40 @@ public class UploadController {
 	@ResponseBody
 	public String onPost(HttpServletRequest request, @RequestParam("file") String fileDataUrl,
 	        @RequestParam("filename") String fileName, @RequestParam(value = "patientId", required = false) Patient patient,
+	        @RequestParam("docDescription") String docDescription, @RequestParam("docType") String docType,
 	        HttpServletResponse response) {
 		
 		System.out.println("UploadController: onPost  fileName: " + fileName + " Patient: " + patient.getGivenName() + " "
-		        + patient.getFamilyName());
+		        + patient.getFamilyName() + "   docDescription: " + docDescription + "   docType: " + docType);
 		
 		JSONObject jsonObject = new JSONObject();
 		try {
 			File file = getFile(fileDataUrl, fileName, patient);
+			
+			Document doc = new Document();
+			int patientId = patient.getPatientId();
+			doc.setPatientId(patientId);
+			doc.setUserId(Context.getAuthenticatedUser().getUserId());
+			doc.setDescription(docDescription);
+			doc.setServerFileName(file.getName());
+			doc.setOriginalFileName(fileName);
+			doc.setDocType(docType);
+			doc.setDateCreated((new Date()));
+			doc.setIsVoided(0);
+			doc.setVoid_reason("none");
+			Document savedDoc = Context.getService(DocumentService.class).saveDocument(doc);
+			System.out.println("********Doc id: " + savedDoc.getId());
+			
 			jsonObject.put("result", "success");
-			jsonObject.put("filename", fileName);
-			jsonObject.put("fullFilename", file.getName());
+			/*
+			jsonObject.put("originalFileName", fileName);
+			jsonObject.put("serverFileName", file.getName());
+			jsonObject.put("docType", docType);
+			jsonObject.put("docDescription", docDescription);
+			jsonObject.put("docId", savedDoc.getId());
+			jsonObject.put("patientId", patientId);
 			jsonObject.put("file-location", file.getAbsolutePath());
+			*/
 		}
 		catch (IOException e) {
 			e.printStackTrace();
