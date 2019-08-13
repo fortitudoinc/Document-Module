@@ -48,8 +48,9 @@ public class ViewUploadFilesPageController {
 		for (Document doc : allDocs) {
 			if (doc.getIsVoided() == 0) {
 				docs.add(doc);
+				//System.out.println("ViewUploadFilesPageController, doc added: " + doc.getOriginalFileName());
 			} else {
-				System.out.println("****DOC voided: " + doc.getId());
+				//System.out.println("****DOC voided: " + doc.getId());
 			}
 		}
 		
@@ -57,9 +58,9 @@ public class ViewUploadFilesPageController {
 		String[] typeArray;
 		if (types == null) {
 			typeArray = "xray,derm".split(",");
-			System.out.println("NO DOCUMENT TYPES IN GLOBAL PROPERTIES");
+			//System.out.println("NO DOCUMENT TYPES IN GLOBAL PROPERTIES");
 		} else {
-			System.out.println("*****DOCUMENT TYPES: " + types);
+			//System.out.println("*****DOCUMENT TYPES: " + types);
 			typeArray = types.split(",");
 		}
 		String urlPathToPage = (request.getRequestURL().toString()).trim();

@@ -77,7 +77,6 @@ public class UploadController {
 			doc.setIsVoided(0);
 			doc.setVoid_reason("none");
 			Document savedDoc = Context.getService(DocumentService.class).saveDocument(doc);
-			System.out.println("********Doc id: " + savedDoc.getId());
 			
 			jsonObject.put("result", "success");
 			/*

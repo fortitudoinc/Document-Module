@@ -208,7 +208,6 @@ return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seco
         for (var i = 0; i < fileInput.files.length; i++) {
             //alert("file: " + fileInput.files[i].name);
             file = fileInput.files[i];
-
             if(file){
                 console.log(file.name, " selected.");
                 initUpload(file);
@@ -270,7 +269,7 @@ var patientId = parts[0].split('=')[1];
             formData.append("file", previewFile);
             formData.append("patientId", patientId);
 var docType = jq('#selectId').val();
-if (docType == "") { docType = "Other"; }
+if (docType == "") { docType = "Test Result"; }
 var descript = document.getElementById("docDescription").value;
 formData.append("docDescription", descript);
 formData.append("docType", docType);
