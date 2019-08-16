@@ -1,4 +1,4 @@
-.idea 
-api/target/* 
-omod/target/* 
+.idea
+api/target/
+omod/target/
 .DS_Store 
