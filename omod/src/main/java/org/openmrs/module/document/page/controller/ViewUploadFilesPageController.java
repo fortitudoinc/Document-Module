@@ -60,7 +60,7 @@ public class ViewUploadFilesPageController {
 			typeArray = "xray,derm".split(",");
 			//System.out.println("NO DOCUMENT TYPES IN GLOBAL PROPERTIES");
 		} else {
-			//System.out.println("*****DOCUMENT TYPES: " + types);
+			System.out.println("*****DOCUMENT TYPES: " + types);
 			typeArray = types.split(",");
 		}
 		String urlPathToPage = (request.getRequestURL().toString()).trim();

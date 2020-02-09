@@ -6,12 +6,12 @@
                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
  
  
-    <changeSet id="documentModuleLevine-1" author="levine">
+    <changeSet id="LevineDocumentModule-1" author="levine">
         <sql>
             drop table if exists document;
         </sql>
     </changeSet>
-    <changeSet id="documentModuleLevine-2" author="levine">
+    <changeSet id="LevineDocumentModule-2" author="levine">
         <preConditions onFail="WARN" onError="WARN">
             <not>
                 <tableExists tableName="document"/>
@@ -23,10 +23,10 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="patient_id" type="int">
-                <constraints nullable="false" foreignKeyName="documentpatient_id11" references="patient(patient_id)"/>
+                <constraints nullable="false" foreignKeyName="documentmodule_fk_1" references="patient(patient_id)"/>
             </column>
             <column name="user_id" type="int">
-                <constraints nullable="false" foreignKeyName="documentuser_id11" references="users(user_id)"/>
+                <constraints nullable="false" foreignKeyName="documentmodule_fk_2" references="users(user_id)"/>
             </column>
             <column name="description" type="varchar(255)"></column>
             <column name="server_file_name" type="varchar(255)"></column>
